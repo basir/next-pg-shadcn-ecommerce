@@ -1,14 +1,14 @@
-# Build Full-ECommerce By Next.js 14, PostgreSQL, Drizzle Orm and Shadcn
+# Build Full-ECommerce By Next.js, PostgreSQL, Drizzle Orm and Shadcn
 
-|                |                                                             |
-| -------------- | ----------------------------------------------------------- |
-| Tech           | Next.js 14, PostgreSQL, Drizzle Orm, Shadcn, PayPal, Stripe |
-| UI             | Tailwind, Shadcn, recharts                                  |
-| Database       | PostgreSQL, Drizzle Orm                                     |
-| Payment        | PayPal, Stripe                                              |
-| Deployment     | Github, Vercel                                              |
-| Authentication | Auth.js, Google Auth, Magic Link                            |
-| Others         | uploadthing, resend, zod                                    |
+|                |                                                          |
+| -------------- | -------------------------------------------------------- |
+| Tech           | Next.js, PostgreSQL, Drizzle Orm, Shadcn, PayPal, Stripe |
+| UI             | Tailwind, Shadcn, recharts                               |
+| Database       | PostgreSQL, Drizzle Orm                                  |
+| Payment        | PayPal, Stripe                                           |
+| Deployment     | Github, Vercel                                           |
+| Authentication | Auth.js, Google Auth, Magic Link                         |
+| Others         | uploadthing, resend, zod                                 |
 
 ![next postgresql amazona](/public/assets/images/app.jpg)
 
@@ -91,23 +91,3 @@ Get this course by 90% discount on Thinkific: ???
 10. implement authentication
 11. create new user
 12. implement add to cart
-13. create shopping cart page
-14. get shipping address
-15. select payment method
-16. place order
-17. create order details page
-18. pay order by PayPal
-19. pay order by Stripe
-20. create orders history page
-21. create user profile form
-22. create admin layout
-23. create dashboard page
-24. list orders
-25. mark orders to delivered
-26. list products
-27. edit products
-28. list users
-29. edit users
-30. add home page carousel
-31. add home page sidebar
-32. create search page

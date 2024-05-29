@@ -3,6 +3,7 @@ import './globals.css'
 
 import { Poppins as FontSans } from 'next/font/google'
 import { cn } from '@/lib/utils'
+import { Toaster } from '@/components/ui/toaster'
 import React from 'react'
 
 const fontSans = FontSans({
@@ -30,6 +31,7 @@ export default function RootLayout({
         )}
       >
         {children}
+        <Toaster />
       </body>
     </html>
   )

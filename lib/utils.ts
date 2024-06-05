@@ -84,6 +84,11 @@ export const formatError = (error: any): string => {
   }
 }
 
+const NUMBER_FORMATTER = new Intl.NumberFormat('en-US')
+export function formatNumber(number: number) {
+  return NUMBER_FORMATTER.format(number)
+}
+
 export const formatNumberWithDecimal = (num: number): string => {
   const [int, decimal] = num.toString().split('.')
   return decimal ? `${int}.${decimal.padEnd(2, '0')}` : int //12.1 => 12.10

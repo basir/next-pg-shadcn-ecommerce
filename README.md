@@ -14,10 +14,13 @@
 
 ## Resources
 
-- Youtube Video : ???
-- Demo Website :  https://next-pg-amazona-final.vercel.app/
-- Source Code   :  https://github.com/basir/next-pg-amazona-final
-- Full Course: ???
+|               |                                                               |
+| ------------- | ------------------------------------------------------------- |
+| Youtube Video | https://youtu.be/M4DrCi8EuYE                                  |
+| Demo Website  | https://github.com/basir/next-pg-shadcn-ecommerce             |
+| Source Code   | https://next-pg-shadcn-ecommerce.vercel.app                   |
+| Full Course   | https://www.youtube.com/channel/UC2xRE4hUCQ3xO3ymEtMh1Hw/join |
+| Contact Basir | basir.jafarzadeh@gmail.com                                    |
 
 ## What you will learn
 
@@ -34,7 +37,11 @@
 
 ## Full Course
 
-Get this course by 90% discount on Thinkific: ???
+🔥 Get Complete Course for $9.99 By Joining My YouTube Channel Pro Membership Here:
+
+https://www.youtube.com/watch?v=MM1qMu-sLqw&list=PLeh2GWv22bmQhKLSG7DuwptE8BGy8y3lJ&index=23
+
+👉 You'll get Admin Dashboard, Search Products, Product Carousel and much more features in Pro Membership.
 
 ## Run Locally
 
@@ -76,18 +83,3 @@ Get this course by 90% discount on Thinkific: ???
    - Open http://localhost:3000
    - Click Sign In button
    - Enter admin email "admin@example.com" and password "123456" and click Sign In
-
-## Lessons
-
-1. Introduction
-2. Install tools
-3. Create next app
-4. create website layout
-5. list products
-6. setup drizzle orm and postgres database
-7. load products from database
-8. deploy on vercel
-9. create product details page
-10. implement authentication
-11. create new user
-12. implement add to cart

@@ -273,3 +273,35 @@ export const updateOrderToPaid = async ({
       .where(eq(orders.id, orderId))
   })
 }
+
+export async function updateOrderToPaidByCOD(orderId: string) {
+  try {
+    await updateOrderToPaid({ orderId })
+    revalidatePath(`/order/${orderId}`)
+    return { success: true, message: 'Order paid successfully' }
+  } catch (err) {
+    return { success: false, message: formatError(err) }
+  }
+}
+
+export async function deliverOrder(orderId: string) {
+  try {
+    const order = await db.query.orders.findFirst({
+      where: eq(orders.id, orderId),
+    })
+    if (!order) throw new Error('Order not found')
+    if (!order.isPaid) throw new Error('Order is not paid')
+
+    await db
+      .update(orders)
+      .set({
+        isDelivered: true,
+        deliveredAt: new Date(),
+      })
+      .where(eq(orders.id, orderId))
+    revalidatePath(`/order/${orderId}`)
+    return { success: true, message: 'Order delivered successfully' }
+  } catch (err) {
+    return { success: false, message: formatError(err) }
+  }
+}

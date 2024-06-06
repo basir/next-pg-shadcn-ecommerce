@@ -86,6 +86,26 @@ export async function getOrderSummary() {
   }
 }
 
+export async function getAllOrders({
+  limit = PAGE_SIZE,
+  page,
+}: {
+  limit?: number
+  page: number
+}) {
+  const data = await db.query.orders.findMany({
+    orderBy: [desc(products.createdAt)],
+    limit,
+    offset: (page - 1) * limit,
+    with: { user: { columns: { name: true } } },
+  })
+  const dataCount = await db.select({ count: count() }).from(orders)
+
+  return {
+    data,
+    totalPages: Math.ceil(dataCount[0].count / limit),
+  }
+}
 // CREATE
 export const createOrder = async () => {
   try {
@@ -133,6 +153,20 @@ export const createOrder = async () => {
     if (isRedirectError(error)) {
       throw error
     }
+    return { success: false, message: formatError(error) }
+  }
+}
+
+// DELETE
+export async function deleteOrder(id: string) {
+  try {
+    await db.delete(orders).where(eq(orders.id, id))
+    revalidatePath('/admin/orders')
+    return {
+      success: true,
+      message: 'Order deleted successfully',
+    }
+  } catch (error) {
     return { success: false, message: formatError(error) }
   }
 }

@@ -30,3 +30,17 @@ export const shippingAddressDefaultValues = {
   postalCode: '',
   country: '',
 }
+
+export const productDefaultValues = {
+  name: '',
+  slug: '',
+  category: '',
+  images: [],
+  brand: '',
+  description: '',
+  price: '0',
+  stock: 0,
+  rating: '0',
+  numReviews: 0,
+  isFeatured: false,
+}

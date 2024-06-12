@@ -28,6 +28,8 @@
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.30.10",
     "drizzle-zod": "^0.5.1",
+    "embla-carousel-autoplay": "^8.1.4",
+    "embla-carousel-react": "^8.1.4",
     "lucide-react": "^0.378.0",
     "next": "14.2.3",
     "next-auth": "5.0.0-beta.18",
@@ -40,6 +42,7 @@
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "uploadthing": "^6.12.0",
+    "vaul": "^0.9.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {

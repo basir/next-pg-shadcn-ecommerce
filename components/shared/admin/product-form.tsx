@@ -82,7 +82,7 @@ export default function ProductForm({
   const images = form.watch('images')
   const isFeatured = form.watch('isFeatured')
   const banner = form.watch('banner')
-
+  console.log(form.formState.errors)
   return (
     <Form {...form}>
       <form

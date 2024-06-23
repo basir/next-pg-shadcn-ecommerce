@@ -9,6 +9,9 @@ import { APP_NAME } from '@/lib/constants'
 import AddToCart from '@/components/shared/product/add-to-cart'
 import { getMyCart } from '@/lib/actions/cart.actions'
 import { round2 } from '@/lib/utils'
+import ReviewList from './review-list'
+import { auth } from '@/auth'
+import Rating from '@/components/shared/product/rating'
 
 export async function generateMetadata({
   params,
@@ -34,6 +37,7 @@ const ProductDetails = async ({
   const product = await getProductBySlug(slug)
   if (!product) notFound()
   const cart = await getMyCart()
+  const session = await auth()
   return (
     <>
       <section>
@@ -48,9 +52,10 @@ const ProductDetails = async ({
                 {product.brand} {product.category}
               </p>
               <h1 className="h3-bold">{product.name}</h1>
-              <p>
-                {product.rating} of {product.numReviews} reviews
-              </p>
+              <Rating
+                value={Number(product.rating)}
+                caption={`${product.numReviews} reviews`}
+              />
 
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                 <div className="flex gap-3">
@@ -103,6 +108,14 @@ const ProductDetails = async ({
             </Card>
           </div>
         </div>
+      </section>
+      <section className="mt-10">
+        <h2 className="h2-bold  mb-5">Customer Reviews</h2>
+        <ReviewList
+          productId={product.id}
+          productSlug={product.slug}
+          userId={session?.user.id!}
+        />
       </section>
     </>
   )

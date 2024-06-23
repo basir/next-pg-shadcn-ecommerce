@@ -107,6 +107,32 @@ export const products = pgTable(
     }
   }
 )
+
+export const reviews = pgTable('reviews', {
+  id: uuid('id').defaultRandom().primaryKey().notNull(),
+  userId: uuid('userId')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  productId: uuid('productId')
+    .notNull()
+    .references(() => products.id, { onDelete: 'cascade' }),
+  rating: integer('rating').notNull(),
+  title: text('title').notNull(),
+  description: text('slug').notNull(),
+  isVerifiedPurchase: boolean('isVerifiedPurchase').notNull().default(true),
+  createdAt: timestamp('createdAt').notNull().defaultNow(),
+})
+export const productRelations = relations(products, ({ many }) => ({
+  reviews: many(reviews),
+}))
+export const reviewsRelations = relations(reviews, ({ one }) => ({
+  user: one(users, { fields: [reviews.userId], references: [users.id] }),
+  product: one(products, {
+    fields: [reviews.productId],
+    references: [products.id],
+  }),
+}))
+
 // CARTS
 export const carts = pgTable('cart', {
   id: uuid('id').notNull().defaultRandom().primaryKey(),

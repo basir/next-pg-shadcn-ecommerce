@@ -254,7 +254,7 @@ export const updateOrderToPaid = async ({
     with: { orderItems: true },
   })
   if (!order) throw new Error('Order not found')
-  // if (order.isPaid) throw new Error('Order is already paid')
+  if (order.isPaid) throw new Error('Order is already paid')
   await db.transaction(async (tx) => {
     for (const item of order.orderItems) {
       await tx
@@ -280,7 +280,8 @@ export const updateOrderToPaid = async ({
   if (!updatedOrder) {
     throw new Error('Order not found')
   }
-  sendPurchaseReceipt({ order: updatedOrder })
+  console.log('sendPurchaseReceipt')
+  await sendPurchaseReceipt({ order: updatedOrder })
 }
 
 export async function updateOrderToPaidByCOD(orderId: string) {

@@ -14,6 +14,7 @@ import { paypal } from '../paypal'
 import { revalidatePath } from 'next/cache'
 import { PaymentResult } from '@/types'
 import { PAGE_SIZE } from '../constants'
+import { sendPurchaseReceipt } from '@/email'
 
 // GET
 export async function getOrderById(orderId: string) {
@@ -253,7 +254,7 @@ export const updateOrderToPaid = async ({
     with: { orderItems: true },
   })
   if (!order) throw new Error('Order not found')
-  if (order.isPaid) throw new Error('Order is already paid')
+  // if (order.isPaid) throw new Error('Order is already paid')
   await db.transaction(async (tx) => {
     for (const item of order.orderItems) {
       await tx
@@ -272,6 +273,14 @@ export const updateOrderToPaid = async ({
       })
       .where(eq(orders.id, orderId))
   })
+  const updatedOrder = await db.query.orders.findFirst({
+    where: eq(orders.id, orderId),
+    with: { orderItems: true, user: { columns: { name: true, email: true } } },
+  })
+  if (!updatedOrder) {
+    throw new Error('Order not found')
+  }
+  sendPurchaseReceipt({ order: updatedOrder })
 }
 
 export async function updateOrderToPaidByCOD(orderId: string) {

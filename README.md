@@ -1,4 +1,4 @@
-# Build Full-ECommerce By Next.js, PostgreSQL, Drizzle Orm and Shadcn
+# Build Full-ECommerce Website By Next.js, Drizzle, PostgreSQL ORM and Shadcn
 
 |                |                                                          |
 | -------------- | -------------------------------------------------------- |
@@ -12,15 +12,13 @@
 
 ![next postgresql amazona](/public/assets/images/app.jpg)
 
-## Resources
+## Watch Video Tutorial
 
-|               |                                                               |
-| ------------- | ------------------------------------------------------------- |
-| Youtube Video | https://youtu.be/M4DrCi8EuYE                                  |
-| Demo Website  | https://github.com/basir/next-pg-shadcn-ecommerce             |
-| Source Code   | https://next-pg-shadcn-ecommerce.vercel.app                   |
-| Full Course   | https://www.youtube.com/channel/UC2xRE4hUCQ3xO3ymEtMh1Hw/join |
-| Contact Basir | basir.jafarzadeh@gmail.com                                    |
+[![next postgresql amazona](http://img.youtube.com/vi/M4DrCi8EuYE/0.jpg)](https://www.youtube.com/watch?v=sCFYd1pQBfk&list=PLeh2GWv22bmQhKLSG7DuwptE8BGy8y3lJ&index=1 'Build Ecommerce App By Next.js, Drizzle ORM, Postgres, Shadcn and Stripe')
+
+## View Demo Website
+
+https://next-pg-shadcn-ecommerce.vercel.app
 
 ## What you will learn
 
@@ -34,14 +32,6 @@
 - handling authentication and authorization by next-auth
 - creating customer dashboard to update profile and track orders
 - and implement a fully-functional admin dashboard with beautiful charts and handling products, orders and users
-
-## Full Course
-
-🔥 Get Complete Course for $9.99 By Joining My YouTube Channel Pro Membership Here:
-
-https://www.youtube.com/watch?v=MM1qMu-sLqw&list=PLeh2GWv22bmQhKLSG7DuwptE8BGy8y3lJ&index=23
-
-👉 You'll get Admin Dashboard, Search Products, Product Carousel and much more features in Pro Membership.
 
 ## Run Locally
 
@@ -83,3 +73,46 @@ https://www.youtube.com/watch?v=MM1qMu-sLqw&list=PLeh2GWv22bmQhKLSG7DuwptE8BGy8y
    - Open http://localhost:3000
    - Click Sign In button
    - Enter admin email "admin@example.com" and password "123456" and click Sign In
+
+## Lessons
+
+1. Introduction
+2. Install tools
+3. Create next app
+4. create website layout
+5. list products
+6. setup drizzle orm and postgres database
+7. load products from database
+8. deploy on vercel
+9. create product details page
+10. implement authentication
+11. create new user
+12. implement add to cart
+13. create shopping cart page
+14. get shipping address
+15. select payment method
+16. place order
+17. create order details page
+18. pay order by PayPal
+19. create orders history page
+20. create user profile form
+21. create admin dashboard page
+22. list orders
+23. mark orders to paid and delivered
+24. list products
+25. edit products
+26. list users
+27. edit users
+28. add home page carousel and sidebar
+29. create search page
+30. rate and review products
+31. add dark and light theme
+32. pay order by Stripe
+33. email order receipt by Resend
+34. find shipping address on Google Map
+35. signin with google
+36. signin with magic link
+
+## Contact Developer
+
+Email: basir.jafarzadeh@gmail.com

@@ -4,11 +4,13 @@ import { eq } from 'drizzle-orm'
 import type { NextAuthConfig } from 'next-auth'
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import Resend from 'next-auth/providers/resend'
 
 import db from './db/drizzle'
 import { carts, users } from './db/schema'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
+import { APP_NAME, SENDER_EMAIL } from './lib/constants'
 
 export const config = {
   pages: {
@@ -51,10 +53,25 @@ export const config = {
         return null
       },
     }),
+    Resend({
+      name: 'Email',
+      from: `${APP_NAME} <${SENDER_EMAIL}>`,
+      id: 'email',
+    }),
   ],
   callbacks: {
     jwt: async ({ token, user, trigger, session }: any) => {
       if (user) {
+        if (user.name === 'NO_NAME') {
+          token.name = user.email!.split('@')[0]
+          await db
+            .update(users)
+            .set({
+              name: token.name,
+            })
+            .where(eq(users.id, user.id))
+        }
+
         token.role = user.role
         if (trigger === 'signIn' || trigger === 'signUp') {
           const sessionCartId = cookies().get('sessionCartId')?.value

@@ -110,8 +110,8 @@ https://next-pg-shadcn-ecommerce.vercel.app
 32. pay order by Stripe
 33. email order receipt by Resend
 34. find shipping address on Google Map
-35. signin with google
-36. signin with magic link
+35. signin with magic link
+36. signin with google
 
 ## Contact Developer
 

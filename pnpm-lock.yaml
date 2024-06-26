@@ -158,8 +158,8 @@ devDependencies:
     specifier: ^18
     version: 18.3.0
   drizzle-kit:
-    specifier: ^0.21.2
-    version: 0.21.2
+    specifier: ^0.21.4
+    version: 0.21.4
   eslint:
     specifier: ^8
     version: 8.57.0
@@ -4115,8 +4115,8 @@ packages:
       wordwrap: 1.0.0
     dev: true
 
-  /drizzle-kit@0.21.2:
-    resolution: {integrity: sha512-U87IhZyCt/9d0ZT/Na3KFJVY31tSxtTx/n9UMcWFpW/5c2Ede39xiCG5efNV/0iimsv97UIRtDI0ldLBW5lbcg==}
+  /drizzle-kit@0.21.4:
+    resolution: {integrity: sha512-Nxcc1ONJLRgbhmR+azxjNF9Ly9privNLEIgW53c92whb4xp8jZLH1kMCh/54ci1mTMuYxPdOukqLwJ8wRudNwA==}
     hasBin: true
     dependencies:
       '@esbuild-kit/esm-loader': 2.6.5

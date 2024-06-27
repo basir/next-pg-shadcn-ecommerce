@@ -21,6 +21,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Loader } from 'lucide-react'
+import ShippingAddressMap from '@/components/shared/map'
 
 export default function ShippingAddressForm({
   address,
@@ -48,6 +49,11 @@ export default function ShippingAddressForm({
       }
       router.push('/payment-method')
     })
+  }
+  const setShippingLocation = ({ lat, lng }: { lat: number; lng: number }) => {
+    console.log(lat, lng)
+    form.setValue('lat', lat)
+    form.setValue('lng', lng)
   }
 
   return (
@@ -135,7 +141,9 @@ export default function ShippingAddressForm({
                 )}
               />
             </div>
-
+            <div>
+              <ShippingAddressMap setShippingLocation={setShippingLocation} />
+            </div>
             <div className="flex gap-2">
               <Button type="submit" disabled={isPending}>
                 {isPending ? (

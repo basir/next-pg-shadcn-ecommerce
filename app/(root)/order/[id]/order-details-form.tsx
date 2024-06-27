@@ -155,6 +155,16 @@ export default function OrderDetailsForm({
                 {shippingAddress.streetAddress}, {shippingAddress.city},{' '}
                 {shippingAddress.postalCode}, {shippingAddress.country}{' '}
               </p>
+              <p className="py-2">
+                <Button asChild variant="outline">
+                  <a
+                    target="_new"
+                    href={`https://maps.google.com?q=${shippingAddress.lat},${shippingAddress.lng}`}
+                  >
+                    Show On Map
+                  </a>
+                </Button>
+              </p>
 
               {isDelivered ? (
                 <Badge variant="secondary">

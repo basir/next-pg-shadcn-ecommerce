@@ -72,8 +72,13 @@ export async function signInWithCredentials(
     return { success: false, message: 'Invalid email or password' }
   }
 }
+
 export const SignInWithEmail = async (formData: any) => {
   await signIn('email', formData)
+}
+
+export const SignInWithGoogle = async () => {
+  await signIn('google')
 }
 
 export const SignOut = async () => {

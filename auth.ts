@@ -5,6 +5,7 @@ import type { NextAuthConfig } from 'next-auth'
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import Resend from 'next-auth/providers/resend'
+import Google from 'next-auth/providers/google'
 
 import db from './db/drizzle'
 import { carts, users } from './db/schema'
@@ -57,6 +58,9 @@ export const config = {
       name: 'Email',
       from: `${APP_NAME} <${SENDER_EMAIL}>`,
       id: 'email',
+    }),
+    Google({
+      allowDangerousEmailAccountLinking: true,
     }),
   ],
   callbacks: {

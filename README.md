@@ -10,7 +10,7 @@
 | Authentication | Auth.js, Google Auth, Magic Link                         |
 | Others         | uploadthing, resend, zod                                 |
 
-![next postgresql amazona](/public/assets/images/app.jpg)
+[![next postgresql amazona](/public/assets/images/app.jpg)](https://next-pg-shadcn-ecommerce.vercel.app/)
 
 ## Watch Video Tutorial
 
@@ -48,12 +48,12 @@ https://next-pg-shadcn-ecommerce.vercel.app
 
 3. Setup PostgreSQL
 
-   - Vercel PostgreSQL MongoDB
+   - Vercel PostgreSQL
      - Create database at https://vercel.com/docs/storage/vercel-postgres
      - In .env.local file update POSTGRES_URL to db url
    - OR Local PostgreSQL
      - Install it from https://www.postgresql.org/download
-     - In .env.local file update MONGODB_URI to db url
+     - In .env.local file update POSTGRES_URL to db url
 
 4. Install and Run
 

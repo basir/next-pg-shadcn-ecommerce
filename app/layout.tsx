@@ -10,7 +10,7 @@ import { APP_DESCRIPTION, APP_NAME } from '@/lib/constants'
 
 const fontSans = FontSans({
   subsets: ['latin'],
-  weight: ['400', '600'],
+  weight: ['500', '800'],
   variable: '--font-sans',
 })
 

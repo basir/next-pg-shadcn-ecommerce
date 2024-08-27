@@ -35,7 +35,7 @@ export default function SignUpForm() {
           <Input
             id="name"
             name="name"
-            placeholder="John Doe"
+            placeholder="UserName"
             required
             type="text"
             defaultValue={signUpDefaultValues.name}
@@ -46,7 +46,7 @@ export default function SignUpForm() {
           <Input
             id="email"
             name="email"
-            placeholder="john@example.com"
+            placeholder="Enter Your Email"
             required
             type="email"
             defaultValue={signUpDefaultValues.email}
@@ -57,6 +57,7 @@ export default function SignUpForm() {
           <Input
             id="password"
             name="password"
+            placeholder="Enter Your Password"
             required
             type="password"
             defaultValue={signUpDefaultValues.password}
@@ -67,6 +68,7 @@ export default function SignUpForm() {
           <Input
             id="confirmPassword"
             name="confirmPassword"
+            placeholder="Retype Your Password"
             required
             type="password"
             defaultValue={signUpDefaultValues.confirmPassword}

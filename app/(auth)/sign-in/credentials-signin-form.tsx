@@ -36,7 +36,7 @@ export default function CredentialsSignInForm() {
           <Input
             id="email"
             name="email"
-            placeholder="m@example.com"
+            placeholder="Enter Your mail"
             required
             type="email"
             defaultValue={signInDefaultValues.email}
@@ -47,6 +47,7 @@ export default function CredentialsSignInForm() {
           <Input
             id="password"
             name="password"
+             placeholder="Enter Your PassWord"
             required
             type="password"
             defaultValue={signInDefaultValues.password}

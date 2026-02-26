@@ -1,0 +1,84 @@
+
+> next-shadcn-ecommerce@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.3
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+ ✓ Ready in 2.7s
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 1890ms (227 modules)
+[31m[auth][error][0m MissingSecret: Please define a `secret`.. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (webpack-internal:///(middleware)/./node_modules/.pnpm/@auth+core@0.31.0/node_modules/@auth/core/lib/utils/assert.js:66:16)
+    at Auth (webpack-internal:///(middleware)/./node_modules/.pnpm/@auth+core@0.31.0/node_modules/@auth/core/index.js:88:95)
+ ○ Compiling /seller/dashboard ...
+ ✓ Compiled /seller/dashboard in 7.2s (671 modules)
+ ✓ Compiled in 1119ms (323 modules)
+ GET /seller/dashboard 200 in 8425ms
+[31m[auth][error][0m MissingSecret: Please define a `secret`.. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (webpack-internal:///(middleware)/./node_modules/.pnpm/@auth+core@0.31.0/node_modules/@auth/core/lib/utils/assert.js:66:16)
+    at Auth (webpack-internal:///(middleware)/./node_modules/.pnpm/@auth+core@0.31.0/node_modules/@auth/core/index.js:88:95)
+ ○ Compiling /seller/products ...
+ ✓ Compiled /seller/products in 9.6s (518 modules)
+ ✓ Compiled in 549ms (312 modules)
+ GET /api/auth/session 200 in 10800ms
+ GET /seller/products 200 in 10353ms
+[31m[auth][error][0m MissingSecret: Please define a `secret`.. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (webpack-internal:///(rsc)/./node_modules/.pnpm/@auth+core@0.31.0/node_modules/@auth/core/lib/utils/assert.js:66:16)
+    at Auth (webpack-internal:///(rsc)/./node_modules/.pnpm/@auth+core@0.31.0/node_modules/@auth/core/index.js:88:95)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:53446
+    at async e_.execute (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:44747)
+    at async e_.handle (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:54700)
+    at async doRender (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/server/base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/server/base-server.js:1587:40)
+[31m[auth][error][0m MissingSecret: Please define a `secret`.. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (webpack-internal:///(rsc)/./node_modules/.pnpm/@auth+core@0.31.0/node_modules/@auth/core/lib/utils/assert.js:66:16)
+    at Auth (webpack-internal:///(rsc)/./node_modules/.pnpm/@auth+core@0.31.0/node_modules/@auth/core/index.js:88:95)
+    at async /app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:53446
+    at async e_.execute (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:44747)
+    at async e_.handle (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:54700)
+    at async doRender (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/server/base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/server/base-server.js:1587:40)
+ GET /api/auth/session 500 in 51ms
+[31m[auth][error][0m MissingSecret: Please define a `secret`.. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (webpack-internal:///(rsc)/./node_modules/.pnpm/@auth+core@0.31.0/node_modules/@auth/core/lib/utils/assert.js:66:16)
+    at Auth (webpack-internal:///(rsc)/./node_modules/.pnpm/@auth+core@0.31.0/node_modules/@auth/core/index.js:88:95)
+    at async /app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:53446
+    at async e_.execute (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:44747)
+    at async e_.handle (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:54700)
+    at async doRender (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/server/base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/server/base-server.js:1587:40)
+ GET /api/auth/session 500 in 21ms
+[31m[auth][error][0m MissingSecret: Please define a `secret`.. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (webpack-internal:///(middleware)/./node_modules/.pnpm/@auth+core@0.31.0/node_modules/@auth/core/lib/utils/assert.js:66:16)
+    at Auth (webpack-internal:///(middleware)/./node_modules/.pnpm/@auth+core@0.31.0/node_modules/@auth/core/index.js:88:95)
+ ✓ Compiled /seller/products/add in 443ms (843 modules)
+ GET /seller/products/add 200 in 604ms
+[31m[auth][error][0m MissingSecret: Please define a `secret`.. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (webpack-internal:///(rsc)/./node_modules/.pnpm/@auth+core@0.31.0/node_modules/@auth/core/lib/utils/assert.js:66:16)
+    at Auth (webpack-internal:///(rsc)/./node_modules/.pnpm/@auth+core@0.31.0/node_modules/@auth/core/index.js:88:95)
+    at async /app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:53446
+    at async e_.execute (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:44747)
+    at async e_.handle (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:54700)
+    at async doRender (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/server/base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/server/base-server.js:1587:40)
+ GET /api/auth/session 500 in 69ms
+[31m[auth][error][0m MissingSecret: Please define a `secret`.. Read more at https://errors.authjs.dev#missingsecret
+    at assertConfig (webpack-internal:///(rsc)/./node_modules/.pnpm/@auth+core@0.31.0/node_modules/@auth/core/lib/utils/assert.js:66:16)
+    at Auth (webpack-internal:///(rsc)/./node_modules/.pnpm/@auth+core@0.31.0/node_modules/@auth/core/index.js:88:95)
+    at async /app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:53446
+    at async e_.execute (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:44747)
+    at async e_.handle (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:54700)
+    at async doRender (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/server/base-server.js:1377:42)
+    at async cacheEntry.responseCache.get.routeKind (/app/node_modules/.pnpm/next@14.2.3_@babel+core@7.24.5_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/server/base-server.js:1587:40)
+ GET /api/auth/session 500 in 12ms
+ ✓ Compiled in 811ms (329 modules)
+ ✓ Compiled in 1231ms (343 modules)
+ ✓ Compiled in 504ms (343 modules)

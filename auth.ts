@@ -1,17 +1,9 @@
-import { DrizzleAdapter } from '@auth/drizzle-adapter'
-import { compareSync } from 'bcrypt-ts-edge'
-import { eq } from 'drizzle-orm'
 import type { NextAuthConfig } from 'next-auth'
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import Resend from 'next-auth/providers/resend'
-import Google from 'next-auth/providers/google'
 
-import db from './db/drizzle'
-import { carts, users } from './db/schema'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
-import { APP_NAME, SENDER_EMAIL } from './lib/constants'
 
 export const config = {
   pages: {
@@ -22,7 +14,6 @@ export const config = {
     strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60,
   },
-  adapter: DrizzleAdapter(db),
   providers: [
     CredentialsProvider({
       credentials: {
@@ -33,70 +24,46 @@ export const config = {
       },
       async authorize(credentials) {
         if (credentials == null) return null
-
-        const user = await db.query.users.findFirst({
-          where: eq(users.email, credentials.email as string),
+        const response = await fetch('http://localhost:8080/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: credentials.email,
+            password: credentials.password,
+          }),
+          cache: 'no-store',
         })
-        if (user && user.password) {
-          const isMatch = compareSync(
-            credentials.password as string,
-            user.password
-          )
-          if (isMatch) {
-            return {
-              id: user.id,
-              name: user.name,
-              email: user.email,
-              role: user.role,
-            }
-          }
+        if (!response.ok) {
+          return null
         }
-        return null
+        const data = await response.json()
+        const apiName =
+          typeof data?.name === 'string' && data.name.trim()
+            ? data.name.trim()
+            : typeof data?.username === 'string' && data.username.trim()
+              ? data.username.split('@')[0]
+              : (credentials.email as string)?.split('@')[0] ?? 'User'
+
+        return {
+          id: (data?.username as string) || (credentials.email as string),
+          name: apiName,
+          email: (data?.username as string) || (credentials.email as string),
+          role: data?.role ?? 'ROLE_USER',
+          accessToken: data?.token ?? null,
+        }
       },
-    }),
-    Resend({
-      name: 'Email',
-      from: `${APP_NAME} <${SENDER_EMAIL}>`,
-      id: 'email',
-    }),
-    Google({
-      allowDangerousEmailAccountLinking: true,
     }),
   ],
   callbacks: {
     jwt: async ({ token, user, trigger, session }: any) => {
       if (user) {
-        if (user.name === 'NO_NAME') {
-          token.name = user.email!.split('@')[0]
-          await db
-            .update(users)
-            .set({
-              name: token.name,
-            })
-            .where(eq(users.id, user.id))
-        }
-
+        token.sub = user.id
+        token.name = user.name
+        token.email = user.email
         token.role = user.role
-        if (trigger === 'signIn' || trigger === 'signUp') {
-          const sessionCartId = cookies().get('sessionCartId')?.value
-          if (!sessionCartId) throw new Error('Session Cart Not Found')
-          const sessionCartExists = await db.query.carts.findFirst({
-            where: eq(carts.sessionCartId, sessionCartId),
-          })
-          if (sessionCartExists && !sessionCartExists.userId) {
-            const userCartExists = await db.query.carts.findFirst({
-              where: eq(carts.userId, user.id),
-            })
-            if (userCartExists) {
-              cookies().set('beforeSigninSessionCartId', sessionCartId)
-              cookies().set('sessionCartId', userCartExists.sessionCartId)
-            } else {
-              db.update(carts)
-                .set({ userId: user.id })
-                .where(eq(carts.id, sessionCartExists.id))
-            }
-          }
-        }
+        token.accessToken = user.accessToken
       }
 
       if (session?.user.name && trigger === 'update') {
@@ -107,7 +74,9 @@ export const config = {
     },
     session: async ({ session, user, trigger, token }: any) => {
       session.user.id = token.sub
+      session.user.name = token.name
       session.user.role = token.role
+      session.accessToken = token.accessToken
       if (trigger === 'update') {
         session.user.name = user.name
       }

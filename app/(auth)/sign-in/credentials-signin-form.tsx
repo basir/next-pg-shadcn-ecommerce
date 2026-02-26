@@ -16,12 +16,16 @@ export default function CredentialsSignInForm() {
   })
 
   const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get('callbackUrl') || '/'
+  const callbackUrl = searchParams?.get('callbackUrl') || '/'
 
   const SignInButton = () => {
     const { pending } = useFormStatus()
     return (
-      <Button disabled={pending} className="w-full" variant="default">
+      <Button
+        disabled={pending}
+        className="w-full bg-green-600/80 hover:bg-green-600 backdrop-blur-lg text-white font-bold rounded-full py-3 mt-4 transition-all"
+        variant="default"
+      >
         {pending ? 'Submitting...' : 'Sign In with credentials'}
       </Button>
     )
@@ -32,7 +36,9 @@ export default function CredentialsSignInForm() {
       <input type="hidden" name="callbackUrl" value={callbackUrl} />
       <div className="space-y-6">
         <div>
-          <Label htmlFor="email">Email</Label>
+          <Label htmlFor="email" className="text-white">
+            Email
+          </Label>
           <Input
             id="email"
             name="email"
@@ -40,16 +46,20 @@ export default function CredentialsSignInForm() {
             required
             type="email"
             defaultValue={signInDefaultValues.email}
+            className="bg-white/10 border border-white/20 text-white placeholder:text-gray-300 rounded-xl px-4 py-3"
           />
         </div>
         <div>
-          <Label htmlFor="password">Password</Label>
+          <Label htmlFor="password" className="text-white">
+            Password
+          </Label>
           <Input
             id="password"
             name="password"
             required
             type="password"
             defaultValue={signInDefaultValues.password}
+            className="bg-white/10 border border-white/20 text-white placeholder:text-gray-300 rounded-xl px-4 py-3"
           />
         </div>
         <div>
@@ -57,22 +67,25 @@ export default function CredentialsSignInForm() {
         </div>
 
         {data && !data.success && (
-          <div className="text-center text-destructive">{data.message}</div>
+          <div className="text-center text-red-300">{data.message}</div>
         )}
         {!data && (
-          <div className="text-center text-destructive">
+          <div className="text-center text-red-300">
             Unknown error happened.{' '}
-            <Button onClick={() => window.location.reload()}>
+            <Button
+              className="bg-white/10 border border-white/20 text-white hover:bg-white/20"
+              onClick={() => window.location.reload()}
+            >
               Please reload
             </Button>
           </div>
         )}
 
-        <div className="text-sm text-center text-muted-foreground">
+        <div className="text-sm text-center text-white/80">
           Don&apos;t have an account?{' '}
           <Link
             target="_self"
-            className="link"
+            className="font-semibold text-white underline underline-offset-4"
             href={`/sign-up?callbackUrl=${encodeURIComponent(callbackUrl)}`}
           >
             Sign Up

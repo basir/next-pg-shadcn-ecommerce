@@ -21,7 +21,7 @@ const Pagination = ({ page, totalPages, urlParamName }: PaginationProps) => {
     const pageValue = btnType === 'next' ? Number(page) + 1 : Number(page) - 1
 
     const newUrl = formUrlQuery({
-      params: searchParams.toString(),
+      params: searchParams?.toString() || '',
       key: urlParamName || 'page',
       value: pageValue.toString(),
     })

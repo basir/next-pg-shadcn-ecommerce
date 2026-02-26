@@ -11,7 +11,6 @@ import {
   updateUserSchema,
 } from '../validator'
 import { formatError } from '../utils'
-import { hashSync } from 'bcrypt-ts-edge'
 import db from '@/db/drizzle'
 import { users } from '@/db/schema'
 import { ShippingAddress } from '@/types'
@@ -19,6 +18,8 @@ import { count, desc, eq } from 'drizzle-orm'
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 import { PAGE_SIZE } from '../constants'
+import { isDatabaseConfigured } from '../db-config'
+import { demoUser } from '../fallback-data'
 
 // USER
 export async function signUp(prevState: unknown, formData: FormData) {
@@ -29,29 +30,48 @@ export async function signUp(prevState: unknown, formData: FormData) {
       confirmPassword: formData.get('confirmPassword'),
       password: formData.get('password'),
     })
-    const values = {
-      id: crypto.randomUUID(),
-      ...user,
-      password: hashSync(user.password, 10),
-    }
-    await db.insert(users).values(values)
-    await signIn('credentials', {
-      email: user.email,
-      password: user.password,
+
+    const apiBase = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080')
+      .trim()
+      .replace(/\/+$/, '')
+    const registerUrl = apiBase.endsWith('/api')
+      ? `${apiBase}/auth/register`
+      : `${apiBase}/api/auth/register`
+
+    const response = await fetch(registerUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: user.name,
+        email: user.email,
+        password: user.password,
+        confirmPassword: user.confirmPassword,
+      }),
+      cache: 'no-store',
     })
-    return { success: true, message: 'User created successfully' }
+
+    if (!response.ok) {
+      const responseBody = await response.text()
+      console.log('Register API rejected payload:', {
+        status: response.status,
+        statusText: response.statusText,
+        body: responseBody,
+      })
+      const message = responseBody || 'Failed to register user'
+      return { success: false, message }
+    }
+
+    return {
+      success: true,
+      message: 'User registered successfully. Please sign in.',
+    }
   } catch (error) {
     if (isRedirectError(error)) {
       throw error
     }
-    return {
-      success: false,
-      message: formatError(error).includes(
-        'duplicate key value violates unique constraint "user_email_idx"'
-      )
-        ? 'Email is already exist'
-        : formatError(error),
-    }
+    return { success: false, message: formatError(error) }
   }
 }
 export async function signInWithCredentials(
@@ -105,6 +125,9 @@ export async function getAllUsers({
 }
 
 export async function getUserById(userId: string) {
+  if (!isDatabaseConfigured()) {
+    return demoUser(userId)
+  }
   const user = await db.query.users.findFirst({
     where: (users, { eq }) => eq(users.id, userId),
   })

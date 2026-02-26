@@ -10,6 +10,8 @@ import { revalidatePath } from 'next/cache'
 import { formatError } from '../utils'
 import { z } from 'zod'
 import { insertProductSchema, updateProductSchema } from '../validator'
+import { isDatabaseConfigured } from '../db-config'
+import { demoProducts } from '../fallback-data'
 
 // CREATE
 export async function createProduct(data: z.infer<typeof insertProductSchema>) {
@@ -48,12 +50,18 @@ export async function updateProduct(data: z.infer<typeof updateProductSchema>) {
 
 // GET
 export async function getProductById(productId: string) {
+  if (!isDatabaseConfigured()) {
+    return demoProducts.find((product) => product.id === productId) || null
+  }
   return await db.query.products.findFirst({
     where: eq(products.id, productId),
   })
 }
 
 export async function getLatestProducts() {
+  if (!isDatabaseConfigured()) {
+    return demoProducts.slice(0, 4)
+  }
   const data = await db.query.products.findMany({
     orderBy: [desc(products.createdAt)],
     limit: 4,
@@ -62,6 +70,9 @@ export async function getLatestProducts() {
 }
 
 export async function getProductBySlug(slug: string) {
+  if (!isDatabaseConfigured()) {
+    return demoProducts.find((product) => product.slug === slug) || null
+  }
   return await db.query.products.findFirst({
     where: eq(products.slug, slug),
   })
@@ -84,6 +95,27 @@ export async function getAllProducts({
   rating?: string
   sort?: string
 }) {
+  if (!isDatabaseConfigured()) {
+    const normalizedQuery = query && query !== 'all' ? query.toLowerCase() : ''
+    const normalizedCategory =
+      category && category !== 'all' ? category.toLowerCase() : ''
+
+    const filtered = demoProducts.filter((product) => {
+      const matchQuery = normalizedQuery
+        ? product.name.toLowerCase().includes(normalizedQuery)
+        : true
+      const matchCategory = normalizedCategory
+        ? product.category.toLowerCase() === normalizedCategory
+        : true
+      return matchQuery && matchCategory
+    })
+
+    return {
+      data: filtered.slice((page - 1) * limit, page * limit),
+      totalPages: Math.max(1, Math.ceil(filtered.length / limit)),
+    }
+  }
+
   const queryFilter =
     query && query !== 'all' ? ilike(products.name, `%${query}%`) : undefined
   const categoryFilter =
@@ -129,6 +161,12 @@ export async function getAllProducts({
 }
 
 export async function getAllCategories() {
+  if (!isDatabaseConfigured()) {
+    const names = Array.from(
+      new Set(demoProducts.map((product) => product.category))
+    )
+    return names.map((name) => ({ name }))
+  }
   const data = await db
     .selectDistinctOn([products.category], { name: products.category })
     .from(products)
@@ -137,6 +175,9 @@ export async function getAllCategories() {
 }
 
 export async function getFeaturedProducts() {
+  if (!isDatabaseConfigured()) {
+    return demoProducts.filter((product) => product.isFeatured).slice(0, 4)
+  }
   const data = await db.query.products.findMany({
     where: eq(products.isFeatured, true),
     orderBy: [desc(products.createdAt)],

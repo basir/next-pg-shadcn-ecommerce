@@ -1,22 +1,11 @@
 import { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
 import { auth } from '@/auth'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
 import { APP_NAME } from '@/lib/constants'
 
 import CredentialsSignInForm from './credentials-signin-form'
-import EmailSigninForm from './email-signin-form'
-import SeparatorWithOr from '@/components/shared/separator-or'
-import GoogleSignInForm from './google-signin-form'
 
 export const metadata: Metadata = {
   title: `Sign In - ${APP_NAME}`,
@@ -35,30 +24,22 @@ export default async function SignIn({
   }
 
   return (
-    <div className="w-full max-w-md mx-auto">
-      <Card>
-        <CardHeader className="space-y-4">
-          <Link href="/" className="flex-center">
-            <Image
-              src="/assets/icons/logo.svg"
-              width={100}
-              height={100}
-              alt={`${APP_NAME} logo`}
-            />
-          </Link>
-          <CardTitle className="text-center">Sign In</CardTitle>
-          <CardDescription className="text-center">
-            Select a method to sign in to your account
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <GoogleSignInForm />
-          <SeparatorWithOr />
-          <EmailSigninForm />
-          <SeparatorWithOr />
+    <div className="min-h-screen w-full flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1592982537447-6f2a6a0a5b83?q=80&w=2000')] bg-cover bg-center bg-no-repeat p-6">
+      <div className="w-[360px] h-[750px] border-[12px] border-gray-900 rounded-[3.5rem] shadow-2xl relative overflow-hidden flex flex-col">
+        <div className="absolute left-1/2 top-3 z-10 h-5 w-32 -translate-x-1/2 rounded-full bg-gray-900/90" />
+        <div className="bg-black/40 backdrop-blur-md h-full w-full p-6 flex flex-col justify-center">
+          <div className="mb-8 text-center space-y-3">
+            <Link href="/home" className="inline-block text-white/90 text-sm font-semibold tracking-wide">
+              {APP_NAME}
+            </Link>
+            <h1 className="text-3xl font-bold text-white">Welcome Back</h1>
+            <p className="text-white/80 text-sm">
+              Sign in with your email and password
+            </p>
+          </div>
           <CredentialsSignInForm />
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   )
 }

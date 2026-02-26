@@ -15,7 +15,7 @@ export default function SignUpForm() {
     message: '',
   })
   const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get('callbackUrl') || '/'
+  const callbackUrl = searchParams?.get('callbackUrl') || '/'
 
   const SignUpButton = () => {
     const { pending } = useFormStatus()

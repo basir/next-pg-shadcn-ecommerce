@@ -9,6 +9,8 @@ import { cartItemSchema } from '../validator'
 import { formatError, round2 } from '../utils'
 import { CartItem } from '@/types'
 import { revalidatePath } from 'next/cache'
+import { isDatabaseConfigured } from '../db-config'
+import { demoCart } from '../fallback-data'
 
 const calcPrice = (items: CartItem[]) => {
   const itemsPrice = round2(
@@ -27,6 +29,12 @@ const calcPrice = (items: CartItem[]) => {
 
 export const addItemToCart = async (data: CartItem) => {
   try {
+    if (!isDatabaseConfigured()) {
+      return {
+        success: false,
+        message: 'Database is not configured. Set POSTGRES_URL to enable cart updates.',
+      }
+    }
     const sessionCartId = cookies().get('sessionCartId')?.value
     if (!sessionCartId) throw new Error('Cart Session not found')
     const session = await auth()
@@ -83,6 +91,9 @@ export const addItemToCart = async (data: CartItem) => {
 }
 
 export async function getMyCart() {
+  if (!isDatabaseConfigured()) {
+    return demoCart
+  }
   const sessionCartId = cookies().get('sessionCartId')?.value
   if (!sessionCartId) return undefined
   const session = await auth()
@@ -97,6 +108,12 @@ export async function getMyCart() {
 
 export const removeItemFromCart = async (productId: string) => {
   try {
+    if (!isDatabaseConfigured()) {
+      return {
+        success: false,
+        message: 'Database is not configured. Set POSTGRES_URL to enable cart updates.',
+      }
+    }
     const sessionCartId = cookies().get('sessionCartId')?.value
     if (!sessionCartId) throw new Error('Cart Session not found')
 
